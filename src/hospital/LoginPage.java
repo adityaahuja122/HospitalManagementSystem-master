@@ -45,13 +45,16 @@ public class LoginPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 0, 0));
         jLabel1.setText("AND HOSPITAL");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Username:");
         jLabel2.setMaximumSize(new java.awt.Dimension(550, 512));
         jLabel2.setMinimumSize(new java.awt.Dimension(550, 512));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Password:");
         jLabel3.setMaximumSize(new java.awt.Dimension(550, 512));
         jLabel3.setMinimumSize(new java.awt.Dimension(550, 512));
@@ -61,7 +64,7 @@ public class LoginPage extends javax.swing.JFrame {
         pass.setBackground(new java.awt.Color(153, 153, 153));
 
         jButton1.setBackground(new java.awt.Color(74, 21, 173));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setText("LOGIN");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,7 +73,7 @@ public class LoginPage extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(74, 21, 173));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton2.setText("CLEAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +101,7 @@ public class LoginPage extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(user)
                             .addComponent(pass, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))))
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,54 +120,49 @@ public class LoginPage extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+
+        user.setText("");
+        pass.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         // TODO add your handling code here:
         String un =user.getText();
         String p= pass.getText();
-        
-        try{ Class.forName("com.mysql.jdbc.Driver");
-        Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/hospital","root","");
-        Statement st=conn.createStatement();
-        String sql="select * from user_login";
 
-        ResultSet rs= st.executeQuery(sql);
-           while(rs.next()){
-               String username=rs.getString("username");
-               String password=rs.getString("password");
-               
-               if(un.equals(username) && p.equals(password)){
-               new welcome().setVisible(true);
-            
-               }
-               else{
-               JOptionPane.showMessageDialog(this, "Wrong username and password");
-               }
+        try{ Class.forName("com.mysql.jdbc.Driver");
+            Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/hospital","root","");
+            Statement st=conn.createStatement();
+            String sql="select * from user_login";
+
+            ResultSet rs= st.executeQuery(sql);
+            while(rs.next()){
+                String username=rs.getString("username");
+                String password=rs.getString("password");
+
+                if(un.equals(username) && p.equals(password)){
+                    new welcome().setVisible(true);
+
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Wrong username and password");
+                }
             }
         }
-catch(Exception e){
-JOptionPane.showMessageDialog(null, "error while establish connection");
-}
-
-
-
-
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "error while establish connection");
+        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        
-        user.setText("");
-        pass.setText("");
-
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

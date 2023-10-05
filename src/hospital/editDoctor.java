@@ -176,7 +176,7 @@ public class editDoctor extends javax.swing.JFrame {
         String dname= dn.getText();
         String dspec= ds.getText();
          try{ Class.forName("com.mysql.jdbc.Driver");
-        Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/hms","root","");
+        Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/doctors","root","");
         
         String sql = "update `doctor_record` SET `DoctorName`='"+dname+"',`Specialization`='"+dspec+"'WHERE id='"+did+"'";
         PreparedStatement ptstmt = conn.prepareStatement(sql);
